@@ -1,0 +1,9 @@
+.v-center {
+	position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.container > .row {
+    margin-top: 100px;
+}
