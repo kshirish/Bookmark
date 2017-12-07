@@ -1,29 +1,30 @@
 const Item   = require('../models/item');
 const fetchMeta = require('url-metadata');
+const config = require('../config');
 
 module.exports = router => {
 
-	router.post('/items', function(req, res) {
+	router.post('/items', (req, res) => {
 
-		const { link = '', tags = [], rating = 'Ok', addedBy } = req.body;
+		const { link = '', tags = '', rating = 'Ok' } = req.body;
 
 		fetchMeta(link).then(function (metadata) {
 
 			const item = new Item({ 
 				link,
-				tags,
+				tags: tags.split(','),
 				rating,
-				addedBy,
+				addedBy: req.decoded._id,
 				metaTitle: metadata['title'] || metadata['og:title'],
 				metaDescription: metadata['description'] || metadata['og:description'],
 				metaImage: metadata['image'] || metadata['og:image']
 			});
 
-			item.save(function(err) {
+			item.save(function(err, item) {
 				
 				if (err) throw err;			
 
-				res.json({ message: 'Item has been created.', metadata });
+				res.json(item);
 			});					
 
 		},
@@ -35,7 +36,7 @@ module.exports = router => {
 		})
 	});	
 
-	router.delete('/items/:itemId', function(req, res) {
+	router.delete('/items/:itemId', (req, res) => {
 
 		Item.remove({ _id: req.params.itemId }, function(err) {
 			
@@ -53,5 +54,36 @@ module.exports = router => {
 
 			res.json(item);
 		});	
+	});
+
+	router.get('/items/user/:userId', (req, res) => {
+
+		Item.find({ addedBy: req.params.userId }, function (err, items) { 
+
+			if (err) throw err;
+
+			res.json(items);
+		});	
+	});
+
+	// TODO: add cache to this api
+	router.get('/filters', (req, res) => {
+
+		Item.find({}, 'tags -_id', function (err, tags) { 
+
+			if (err) throw err;
+			
+			const items = tags.map(t => t.tags)
+				.reduce(function(a, b) {
+					return a.concat(b);
+				});
+
+			const uniqueItems = [ ...new Set(items) ]
+
+			res.json({
+				tags: items,
+				ratings: config.ratings
+			});
+		})
 	});
 };

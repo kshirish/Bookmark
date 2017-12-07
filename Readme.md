@@ -4,3 +4,12 @@
 * filtering by rating
 * filtering by tags
 * search by title, description
+
+# api
+
+* authenticate user
+* login call
+* signup call
+* logout call
+* fetch filters i.e. unique tags, ratings
+* make filter call

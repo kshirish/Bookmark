@@ -12,10 +12,26 @@ main {
 	padding-top: 30px;
 }
 
-.card .badge-container {
+.item {
+	margin-bottom: 20px;
+    border: 1px solid #eee;
+    box-shadow: 1px 2px 2px #eee;
+    border-radius: 3px;
+    padding: 15px 0;
+}
+
+.item img {
+	border-radius: 3px;
+}
+
+.item .badge-container {
 	margin-bottom: 1rem;
 }
 
-.card .badge {
+.item .badge {
 	margin-right: 5px;
+}
+
+.hide {
+	display: none !important;
 }

@@ -8,6 +8,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
+  "proxy": "http://localhost:8080",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kshirish/Bookmark.git"

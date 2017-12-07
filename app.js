@@ -17,7 +17,7 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.json());	// parse application/json
 app.use(bodyParser.urlencoded({ extended: true }));	// parse application/x-www-form-urlencoded
 app.use(methodOverride('X-HTTP-Method-Override'));	// simulate PUT and DELETE
-app.use(express.static(`${__dirname}/build/static`));	// static files
+app.use(express.static(`${__dirname}/build`));	// static files
 app.use(morgan('dev'));
 app.use('/api/v1', router);
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const config = require('../config');
 
 // set up a mongoose model
 module.exports = mongoose.model('Item', new Schema({ 
@@ -10,7 +11,7 @@ module.exports = mongoose.model('Item', new Schema({
 	tags: [String],
 	rating: { 
 		type: String, 
-		enum: ['Ok', 'Good', 'Useful', 'Must']
+		enum: config.ratings
 	},
 	addedBy: {
 		type: Schema.Types.ObjectId,

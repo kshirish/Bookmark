@@ -1,16 +1,30 @@
+import { omit } from '../utils';
 const initialState = {	
-    _id: '5a264a5707a4dd4ded26a7bc',
-    fullname: 'Kisley Shirish',
-    username: 'kshrish',
-    token: '1381948504759'
+	fetching: false,
+	isFetched: false
 };
 
 const logged = (state = initialState, action) => {
-  
-  switch (action.type) {
 
-    default: return state;
-  }
+	switch (action.type) {
+
+		case 'LOGIN_API_REQUESTING': return { ...state, 
+				fetching: true, 
+				isFetched: false 
+			};
+
+		case 'LOGIN_API_RECEIVED': 
+			
+			const obj = omit(action.payload.data, ['message']);
+			
+			return { ...state, 
+				fetching: false, 
+				isFetched: true, 
+				...obj
+			};
+
+		default: return state;
+	}
 }
 
 export default logged

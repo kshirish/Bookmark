@@ -24,9 +24,8 @@ module.exports = (router, app) => {
 
 				} else {
 
-					const payload = {
-						fullname: user.fullname
-					};
+					const { _id, fullname, username } = user;
+					const payload = { _id, fullname, username };
 
 					const token = jwt.sign(payload, app.get('superSecret'), {
 						expiresIn: 86400 // expires in 24 hours
@@ -34,6 +33,7 @@ module.exports = (router, app) => {
 
 					res.json({
 						message: 'Enjoy your token!',
+						user: payload,
 						token
 					});
 				}		

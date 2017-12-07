@@ -1,4 +1,5 @@
 {
 	"secret": "what's the rumpus",
-	"database": "mongodb://test:test@ds121015.mlab.com:21015/bookmark"
+	"database": "mongodb://test:test@ds121015.mlab.com:21015/bookmark",
+	"ratings": ["Ok", "Good", "Useful", "Must"]
 }

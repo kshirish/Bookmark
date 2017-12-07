@@ -22,16 +22,16 @@ const Filters = ({tags, ratings}) => {
 		</FormGroup>
 	});
 
-  return <Form>
-			<FormGroup tag="fieldset">
-				<legend>Tags</legend>
-					{tagsEl}
-			</FormGroup>
-			<FormGroup tag="fieldset">
-				<legend>Ratings</legend>
-					{ratingsEl}
-			</FormGroup>    
-		</Form>
+  	return <Form>
+		<FormGroup tag="fieldset">
+			<legend>Tags</legend>
+				{tagsEl}
+		</FormGroup>
+		<FormGroup tag="fieldset">
+			<legend>Ratings</legend>
+				{ratingsEl}
+		</FormGroup>
+	</Form>
 };
 
 export default Filters;
