@@ -47,10 +47,11 @@ export const newItemApi = function(link, tags, rating, token) {
 		
 		dispatch({type: 'NEW_ITEM_API_REQUESTING', payload: { fetching: true, isFetched: false }});
 		
-		Api.newItem(link, tags, rating, token)
+		return Api.newItem(link, tags, rating, token)
 			.then(function(res) {
 				
 				dispatch({type: 'NEW_ITEM_API_RECEIVED', payload: { fetching: false, isFetched: true, data: res.body }});
+				return res;
 			});
 	};	
 }

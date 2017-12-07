@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { toggleHeader, toggleModal, updateNewItem, newItemApi } from '../actions';
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
-	Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,
+	Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label,
   UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 
@@ -112,8 +112,12 @@ const mapDispatchToProps = function(dispatch) {
 		},
 		addItem: function(e, link, tags, rating, token) {
 			e.preventDefault();
-			dispatch(newItemApi(link, tags, rating, token));
-			dispatch(toggleModal());
+			dispatch(newItemApi(link, tags, rating, token))
+				.then(function({ statusCode }) {
+
+					if(statusCode === 200)
+						dispatch(toggleModal());
+				})			
 		}
 	};
 };

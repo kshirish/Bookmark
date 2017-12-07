@@ -6,7 +6,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 const LoginForm = ({ username, password, toggle, handleChange, loginSubmit }) => (
 	<Form onSubmit={e => loginSubmit(e, username, password)}>
 		<FormGroup>
-			<Label for="exampleUsername">Email</Label>
+			<Label for="exampleUsername">Username</Label>
 			<Input type="text" value={username} onChange={e => handleChange(e)} name="username" id="exampleUsername" placeholder="Username" />
 		</FormGroup>
 		<FormGroup>
