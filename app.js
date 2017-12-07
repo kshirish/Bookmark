@@ -27,9 +27,10 @@ require('./routes/user')(router);
 require('./routes/item')(router);
 require('./routes/views')(app);
 
-// catch all
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-	res.json({ message: 'Leave me alone.' });
+	res.sendFile(`${__dirname}/build/index.html`);
 });
 
 app.listen(port, () => console.log(`Listening to port - ${port}`));
